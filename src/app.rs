@@ -3,7 +3,12 @@ use makepad_widgets::*;
 live_design!{
     import makepad_widgets::base::*;
     import makepad_widgets::theme_desktop_dark::*;
-    TEST = dep("crate://self/resources/test.mp4")
+    // TEST = dep("crate://self/resources/test.mp4")
+    // TEST2 = dep("crate://self/resources/test2.mp4")
+    // TEST3 = dep("crate://self/resources/test3.mp4")
+    // TEST4 = dep("crate://self/resources/test4.mp4")
+    TEST5 = dep("crate://self/resources/test5.mp4")
+    TEST6 = dep("crate://self/resources/test6.mp4")
     
     App = {{App}} {
         ui: <DesktopWindow>{
@@ -24,11 +29,19 @@ live_design!{
                     y: 0.5
                 
                 },
+                spacing: 20
 
                 <Video> {
-                    source: (TEST)
-                    width: Fill,
-                    height: Fill,
+                    source: (TEST5)
+                    width: 430,
+                    height: 270,
+                    is_looping: true
+                }
+
+                <Video> {
+                    source: (TEST6)
+                    width: 430,
+                    height: 270,
                     is_looping: true
                 }
             }
