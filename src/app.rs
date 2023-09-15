@@ -3,46 +3,29 @@ use makepad_widgets::*;
 live_design!{
     import makepad_widgets::base::*;
     import makepad_widgets::theme_desktop_dark::*;
-    // TEST = dep("crate://self/resources/test.mp4")
-    // TEST2 = dep("crate://self/resources/test2.mp4")
-    // TEST3 = dep("crate://self/resources/test3.mp4")
-    // TEST4 = dep("crate://self/resources/test4.mp4")
-    TEST5 = dep("crate://self/resources/test5.mp4")
-    TEST6 = dep("crate://self/resources/test6.mp4")
+    VIDEO_1 = dep("crate://self/resources/video_1.mp4")
+    // VIDEO_2 = dep("crate://self/resources/video_2.mp4")
+    // VIDEO_3 = dep("crate://self/resources/video_3.mp4")
+    // VIDEO_4 = dep("crate://self/resources/video_4.mp4")
+    // VIDEO_5 = dep("crate://self/resources/video_5.mp4")
     
     App = {{App}} {
-        ui: <DesktopWindow>{
+        ui: <Window>{
             show_bg: true
-            width: Fill,
-            height: Fill
-            
-            draw_bg: {
-                fn pixel(self) -> vec4 {
-                    return mix(#7, #3, self.pos.y);
-                }
-            }
+            width: 370,
+            height: 640,
+            draw_bg: {color: #0}
  
             <View>{
-                flow: Down,
-                align: {
-                    x: 0.5,
-                    y: 0.5
-                
-                },
-                spacing: 20
+                width: 370,
+                height: 640,
 
                 <Video> {
-                    source: (TEST5)
-                    width: 430,
-                    height: 270,
+                    source: (VIDEO_1)
+                    width: 370,
+                    height: 640,
                     is_looping: true
-                }
-
-                <Video> {
-                    source: (TEST6)
-                    width: 430,
-                    height: 270,
-                    is_looping: true
+                    hold_to_pause: true
                 }
             }
         }
