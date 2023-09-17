@@ -26,6 +26,7 @@ live_design!{
                     height: 640,
                     is_looping: true
                     hold_to_pause: true
+                    autoplay: true
                 }
             }
         }
