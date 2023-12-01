@@ -1,29 +1,62 @@
 use makepad_widgets::*;
 
-live_design!{
+live_design! {
     import makepad_widgets::base::*;
     import makepad_widgets::theme_desktop_dark::*;
-    VIDEO_1 = dep("crate://self/resources/video_1.mp4")
-    // VIDEO_2 = dep("crate://self/resources/video_2.mp4")
-    // VIDEO_3 = dep("crate://self/resources/video_3.mp4")
-    // VIDEO_4 = dep("crate://self/resources/video_4.mp4")
-    // VIDEO_5 = dep("crate://self/resources/video_5.mp4")
-    
+    import makepad_draw::shader::std::*;
+    import makepad_draw::shader::draw_color::DrawColor;
+
+    GAMING = dep("crate://self/resources/gaming.mp4")    
+    //SUNSET = dep("crate://self/resources/sunset.mp4")
+
+    // 60 FPS
+    // CAT = dep("crate://self/resources/cat.mp4")
+
+    // WITH AUDIO
+    // SINGING = dep("crate://self/resources/singing.mp4")
+
     App = {{App}} {
-        ui: <Window>{
+        ui: <Window> {
             show_bg: true
-            width: 370,
-            height: 640,
+            width: Fill,
+            height: Fill,
             draw_bg: {color: #0}
  
-            <View>{
-                width: 370,
-                height: 640,
+            body = <View> {
+                width: Fill,
+                height: Fill,
+                flow: Down,
+                spacing: 20.0,
+                align: {
+                    x: 0.5,
+                    y: 0.5
+                },
 
-                <Video> {
-                    source: (VIDEO_1)
-                    width: 370,
-                    height: 640,
+                dep_video = <Video> {
+                    source: Dependency { path: (GAMING)}
+                    height: 185,
+                    width: 320,
+                    is_looping: true
+                    hold_to_pause: true
+                    autoplay: true
+                }
+
+                // Only works on android < 13. Requires the app to have storage read permissions, which must be 
+                // requested at runtime on android > 13, doing so is not yet supported on Makepad.
+
+                // fs_video = <Video> { 
+                //     source: Filesystem { path: "/storage/emulated/0/DCIM/Camera/test.mp4"}
+                //     height: 185,
+                //     width: 320,
+                //     is_looping: true
+                //     hold_to_pause: true
+                //     autoplay: true
+                // }
+
+                network_video = <Video> {
+                    source: Network { url: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"}
+                    height: 185,
+                    width: 320,
                     is_looping: true
                     hold_to_pause: true
                     autoplay: true
@@ -42,7 +75,7 @@ pub struct App {
 
 impl LiveHook for App {
     fn before_live_design(cx: &mut Cx) {
-        crate::makepad_widgets::live_design(cx);
+        makepad_widgets::live_design(cx);
     }
 }
 
